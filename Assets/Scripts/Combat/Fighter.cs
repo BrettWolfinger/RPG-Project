@@ -7,7 +7,7 @@ namespace RPG.Combat
     {
         //Cached component variables
         Mover mover;
-        Transform target;
+        Health target;
         ActionScheduler scheduler;
         Animator animator;
 
@@ -27,11 +27,12 @@ namespace RPG.Combat
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
-            if (!target) return;
+            if (target == null) return;
+            if (target.IsDead()) return;
 
             if (GetIsOutOfRange())
             {
-                mover.MoveTo(target.position);
+                mover.MoveTo(target.transform.position);
             }
             else
             {
@@ -43,34 +44,49 @@ namespace RPG.Combat
 
         private void AttackBehaviour()
         {
+            transform.LookAt(target.transform);
             if(timeSinceLastAttack > timeBetweenAttacks)
             {
-                animator.SetTrigger("attack");
+                TriggerAttackAnimation();
                 timeSinceLastAttack = 0;
                 //Hit() event triggers
             }
         }
 
+        private void TriggerAttackAnimation()
+        {
+            animator.ResetTrigger("stopAttack");
+            animator.SetTrigger("attack");
+        }
+
         //animation event
         void Hit()
         {
-            target.GetComponent<Health>().TakeDamage(weaponDamage);
+            if (target == null) return;
+            target.TakeDamage(weaponDamage);
         }
 
         private bool GetIsOutOfRange()
         {
-            return Vector3.Distance(target.position, transform.position) > weaponRange;
+            return Vector3.Distance(target.transform.position, transform.position) > weaponRange;
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             scheduler.StartAction(this);
-            target = combatTarget.transform;
+            target = combatTarget.GetComponent<Health>();
         }
 
         public void Cancel()
         {
+            StopAttackAnimation();
             target = null;
+        }
+
+        private void StopAttackAnimation()
+        {
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("stopAttack");
         }
     }
 }
