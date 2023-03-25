@@ -64,6 +64,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1134329890, guid: cbb9f6ff9620a3746b226c88b7128ff2, type: 3}
+      propertyPath: m_Speed
+      value: 4.66
+      objectReference: {fileID: 0}
     - target: {fileID: 2857527581443395721, guid: cbb9f6ff9620a3746b226c88b7128ff2, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -128,18 +132,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2857527581443395721, guid: cbb9f6ff9620a3746b226c88b7128ff2, type: 3}
   m_PrefabInstance: {fileID: 8719587744292812127}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2873811189531105376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6820078113469015510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2374cbe78410d43478bb15b7741df2f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &2128721799263291624
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -154,3 +146,40 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.7739135, z: 0}
+--- !u!114 &2873811189531105376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820078113469015510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2374cbe78410d43478bb15b7741df2f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4272697694859880504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820078113469015510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9393b1ebe58484abaea19d74e55d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 5
+--- !u!114 &3444959349698436028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820078113469015510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd762d6a291844c4f81b27a0edff8a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

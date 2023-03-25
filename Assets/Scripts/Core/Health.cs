@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace RPG.Combat
+namespace RPG.Core
 {
     public class Health : MonoBehaviour 
     {
@@ -24,8 +24,9 @@ namespace RPG.Combat
         {
             if(isDead) return;
             GetComponent<Animator>().SetTrigger("die");
+            GetComponent<ActionScheduler>().CancelCurrentAction();
             GetComponent<NavMeshAgent>().enabled = false;
-            GetComponent<Collider>().enabled = false;
+            if(GetComponent<Collider>()) GetComponent<Collider>().enabled = false;
             isDead = true;
         }
 

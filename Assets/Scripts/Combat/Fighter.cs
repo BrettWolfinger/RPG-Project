@@ -17,7 +17,7 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 5f;
 
         //Other helper variables
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = Mathf.Infinity;
 
         private void Awake() {
             mover = GetComponent<Mover>();
@@ -71,7 +71,7 @@ namespace RPG.Combat
             return Vector3.Distance(target.transform.position, transform.position) > weaponRange;
         }
 
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject combatTarget)
         {
             scheduler.StartAction(this);
             target = combatTarget.GetComponent<Health>();

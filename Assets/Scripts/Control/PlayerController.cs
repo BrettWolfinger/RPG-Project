@@ -1,6 +1,7 @@
 using UnityEngine;
 using RPG.Movement;
 using RPG.Combat;
+using RPG.Core;
 using System;
 
 namespace RPG.Control
@@ -9,14 +10,17 @@ namespace RPG.Control
         
         Mover mover;
         Fighter fighter;
+        Health health;
 
         void Awake()
         {
             mover = GetComponent<Mover>();
             fighter = GetComponent<Fighter>();
+            health = GetComponent<Health>();
         }
         void Update()
         {
+            if(health.IsDead()) return;
             if(InteractWithCombat()) return;
             if(InteractWithMovement()) return;
         }
@@ -26,12 +30,13 @@ namespace RPG.Control
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in hits)
             {
+                //Make sure raycasted hit has a combatTarget, indicating it can be attacked
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
                 if(target)
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        fighter.Attack(target);
+                        fighter.Attack(target.gameObject);
                     }
                     //return outside of if for combat cursor affordance
                     return true;
