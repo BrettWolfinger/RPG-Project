@@ -2,6 +2,7 @@ using UnityEngine;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using System;
 
 namespace RPG.Control{
     public class AIController : MonoBehaviour 
@@ -10,18 +11,25 @@ namespace RPG.Control{
         Health health;
         Fighter fighter;
         Mover mover;
+        ActionScheduler scheduler;
         [SerializeField] float chaseDistance = 5f;
+        [SerializeField] float suspicionTime = 2f;
+        [SerializeField] PatrolPath patrolPath;
+        [SerializeField] float waypointTolerance = 1f;
+        [SerializeField] float waypointDwellTime = 2f;
         
-        
-        bool isInCombat;
-        Vector3 guardLocation;
+        Vector3 guardPosition;
+        float timeSinceLastSawPlayer = Mathf.Infinity;
+        float timeSpentDwelling = 0;
+        int waypointIndex = 0;
 
         private void Awake() {
             player = GameObject.FindWithTag("Player");
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
             mover = GetComponent<Mover>();
-            guardLocation = transform.position;
+            scheduler = GetComponent<ActionScheduler>();
+            guardPosition = transform.position;
         }
 
         private void Update()
@@ -29,13 +37,65 @@ namespace RPG.Control{
             if(health.IsDead()) return;
             if(GetIsInChaseRange())
             {
-                fighter.Attack(player);
-                isInCombat = true;
+                AttackBehavior();
             }
-            else if(isInCombat)
+            else if (timeSinceLastSawPlayer < suspicionTime)
             {
-                mover.StartMoveAction(guardLocation);
+                SuspicionBehavior();
             }
+            else
+            {
+                PatrolBehavior();
+            }
+
+            timeSinceLastSawPlayer += Time.deltaTime;
+        }
+
+        private void AttackBehavior()
+        {
+            timeSinceLastSawPlayer = 0;
+            fighter.Attack(player);
+        }
+
+        private void SuspicionBehavior()
+        {
+            scheduler.CancelCurrentAction();
+        }
+
+        private void PatrolBehavior()
+        {
+            Vector3 nextPosition = guardPosition;
+            if(patrolPath != null)
+            {
+                if(AtWaypoint())
+                {
+                    timeSpentDwelling += Time.deltaTime;
+                    if(timeSpentDwelling > waypointDwellTime)
+                    {
+                        timeSpentDwelling = 0;
+                        CycleNextWaypoint();
+                    }
+                }
+                nextPosition = GetCurrentWaypoint();
+            }
+
+            mover.StartMoveAction(nextPosition);
+        }
+
+        private bool AtWaypoint()
+        {
+            float distanceToWaypoint = Vector3.Distance(transform.position,GetCurrentWaypoint());
+            return distanceToWaypoint < waypointTolerance;
+        }
+
+        private void CycleNextWaypoint()
+        {
+            waypointIndex = patrolPath.GetNextIndex(waypointIndex);
+        }
+
+        private Vector3 GetCurrentWaypoint()
+        {
+            return patrolPath.GetWaypoint(waypointIndex);
         }
 
         private bool GetIsInChaseRange()
