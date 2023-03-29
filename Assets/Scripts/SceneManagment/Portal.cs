@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using RPG.Saving;
 
 namespace RPG.SceneManagement
 {
@@ -30,11 +31,17 @@ namespace RPG.SceneManagement
                 yield break;
             }
             Fader fader = FindObjectOfType<Fader>();
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            
             DontDestroyOnLoad(this.gameObject);
             yield return fader.FadeOut(fadeOutTime);
+            
+            savingWrapper.Save();
+            
             yield return SceneManager.LoadSceneAsync(portalData.SceneToLoad);
 
             Portal otherPortal = GetOtherPortal();
+            savingWrapper.Load();
             UpdatePlayer(otherPortal);
             
             yield return new WaitForSeconds(fadeWaitTime);

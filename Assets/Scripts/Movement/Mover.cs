@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
+using RPG.Saving;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour, IAction
+    public class Mover : MonoBehaviour, IAction, ISaveable
     {
         NavMeshAgent agent;
         ActionScheduler scheduler;
@@ -61,5 +62,18 @@ namespace RPG.Movement
             speed = localVelocity.z;
             animator.SetFloat("ForwardSpeed",speed);
         }
+
+        public object CaptureState() 
+        {
+            return new SerializableVector3(transform.position);
+        }
+
+        public void RestoreState(object state)
+        {
+            SerializableVector3 position = (SerializableVector3)state;
+            transform.GetComponent<NavMeshAgent>().Warp(position.ToVector());
+            GetComponent<ActionScheduler>().CancelCurrentAction();
+        }
+
     }
 }

@@ -11,17 +11,28 @@ namespace RPG.Saving
 
         private void Awake() {
             savingSystem = GetComponent<SavingSystem>();
+            //Load();
         }
 
         private void Update() {
             if(Input.GetKeyDown(KeyCode.S))
             {
-                savingSystem.Save(defaultSaveFile);
+                Save();
             }
-            if(Input.GetKey(KeyCode.L))
+            if (Input.GetKey(KeyCode.L))
             {
-                savingSystem.Load(defaultSaveFile);
+                Load();
             }
+        }
+
+        public void Save()
+        {
+            savingSystem.Save(defaultSaveFile);
+        }
+
+        public void Load()
+        {
+            savingSystem.Load(defaultSaveFile);
         }
     }
 }
