@@ -1,9 +1,10 @@
+using RPG.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace RPG.Core
 {
-    public class Health : MonoBehaviour 
+    public class Health : MonoBehaviour, ISaveable
     {
         bool isDead = false;
 
@@ -34,5 +35,20 @@ namespace RPG.Core
         {
             return isDead;
         }
+
+        public object CaptureState() 
+        {
+            return health;
+        }
+
+        public void RestoreState(object state)
+        {
+            health = (float)state;
+            if(health <= 0)
+            {
+                Die();
+            }
+        }
+
     }
 }

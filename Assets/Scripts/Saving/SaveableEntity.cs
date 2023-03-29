@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RPG.Core;
 using UnityEditor;
@@ -10,6 +11,7 @@ namespace RPG.Saving
     public class SaveableEntity : MonoBehaviour 
     {
         [SerializeField] string uniqueIdentifier = "";
+        static Dictionary<string, SaveableEntity> globalLookup = new Dictionary<string, SaveableEntity>();
         public string GetUniqueIdentifier()
         {
             return uniqueIdentifier;
@@ -46,12 +48,35 @@ namespace RPG.Saving
             SerializedObject serializedObject = new SerializedObject(this);
             SerializedProperty property = serializedObject.FindProperty("uniqueIdentifier");
             
-            if(string.IsNullOrEmpty(property.stringValue))
+            if(string.IsNullOrEmpty(property.stringValue) || !IsUnique(property.stringValue))
             {
                 property.stringValue = System.Guid.NewGuid().ToString();
                 serializedObject.ApplyModifiedProperties();
             }
+
+            globalLookup[property.stringValue] = this;
         }
 #endif
+        private bool IsUnique(string candidate)
+        {
+            if(!globalLookup.ContainsKey(candidate)) return true;
+            if(globalLookup[candidate] == this) return true;
+
+            //deleted game object that's still in the dictionary
+            if(globalLookup[candidate] == null)
+            {
+                globalLookup.Remove(candidate);
+                return true;
+            }
+
+            //identifier has changed while the previous one still exists
+            if(globalLookup[candidate].GetUniqueIdentifier() != candidate)
+            {
+                globalLookup.Remove(candidate);
+                return true;
+            }
+
+            return false;
+        }
     }
 }
