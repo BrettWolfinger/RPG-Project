@@ -42,6 +42,11 @@ namespace RPG.Movement
             agent.isStopped = false;
         }
 
+        public void SetSpeed(float speed)
+        {
+            agent.speed = speed;
+        }
+
         public void Cancel()
         {
             agent.isStopped = true;
