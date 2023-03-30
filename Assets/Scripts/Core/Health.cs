@@ -1,10 +1,11 @@
+using Newtonsoft.Json.Linq;
 using RPG.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace RPG.Core
 {
-    public class Health : MonoBehaviour, ISaveable
+    public class Health : MonoBehaviour, IJsonSaveable
     {
         bool isDead = false;
 
@@ -36,19 +37,18 @@ namespace RPG.Core
             return isDead;
         }
 
-        public object CaptureState() 
+        public JToken CaptureAsJToken()
         {
-            return health;
+            return JToken.FromObject(health);
         }
 
-        public void RestoreState(object state)
+        public void RestoreFromJToken(JToken state)
         {
-            health = (float)state;
+            health = state.ToObject<float>();
             if(health <= 0)
             {
                 Die();
             }
         }
-
     }
 }

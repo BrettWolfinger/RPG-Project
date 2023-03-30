@@ -8,14 +8,14 @@ namespace RPG.SceneManagement
 {
     public class SavingWrapper : MonoBehaviour 
     {
-        const string defaultSaveFile = "save.sav";
-        SavingSystem savingSystem;
+        const string defaultSaveFile = "save.json";
+        JsonSavingSystem savingSystem;
 
         [SerializeField] float fadeInTime = 0.2f;
 
         
         private void Awake() {
-            savingSystem = GetComponent<SavingSystem>();
+            savingSystem = GetComponent<JsonSavingSystem>();
         }
 
         private IEnumerator Start() {

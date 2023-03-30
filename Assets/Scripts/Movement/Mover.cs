@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
 using RPG.Saving;
+using Newtonsoft.Json.Linq;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour, IAction, ISaveable
+    public class Mover : MonoBehaviour, IAction, IJsonSaveable
     {
         NavMeshAgent agent;
         ActionScheduler scheduler;
@@ -63,17 +64,16 @@ namespace RPG.Movement
             animator.SetFloat("ForwardSpeed",speed);
         }
 
-        public object CaptureState() 
+        public JToken CaptureAsJToken()
         {
-            return new SerializableVector3(transform.position);
+            return JsonStatics.ToToken(transform.position);
         }
 
-        public void RestoreState(object state)
+        public void RestoreFromJToken(JToken state)
         {
-            SerializableVector3 position = (SerializableVector3)state;
-            transform.GetComponent<NavMeshAgent>().Warp(position.ToVector());
+            Vector3 position = JsonStatics.ToVector3(state);
+            transform.GetComponent<NavMeshAgent>().Warp(position);
             GetComponent<ActionScheduler>().CancelCurrentAction();
         }
-
     }
 }
