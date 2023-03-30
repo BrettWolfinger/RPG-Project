@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using RPG.Movement;
 using RPG.Core;
 namespace RPG.Combat
@@ -13,7 +14,9 @@ namespace RPG.Combat
 
         //Serialized Fields
         [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] Transform handTransform = null;
+        [FormerlySerializedAs("handTransform")]
+        [SerializeField] Transform rightHandTransform = null;
+        [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Weapon_SO defaultWeapon = null;
 
 
@@ -60,7 +63,7 @@ namespace RPG.Combat
         {
             currentWeapon = weapon;
             if(weapon == null) return;
-            weapon.Spawn(handTransform,animator);
+            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 
         private void TriggerAttackAnimation()
@@ -73,7 +76,19 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) return;
-            target.TakeDamage(currentWeapon.GetWeaponDamage());
+            if(currentWeapon.HasProjectile())
+            {
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+            }
+            else
+            {
+                target.TakeDamage(currentWeapon.GetWeaponDamage());
+            }
+        }
+
+        void Shoot()
+        {
+            Hit();
         }
 
         private bool GetIsOutOfRange()
