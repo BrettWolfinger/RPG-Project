@@ -12,17 +12,20 @@ namespace RPG.Combat
         Animator animator;
 
         //Serialized Fields
-        [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] float weaponDamage = 5f;
+        [SerializeField] Transform handTransform = null;
+        [SerializeField] Weapon_SO defaultWeapon = null;
+
 
         //Other helper variables
         float timeSinceLastAttack = Mathf.Infinity;
+        Weapon_SO currentWeapon = null;
 
         private void Awake() {
             mover = GetComponent<Mover>();
             scheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
+            EquipWeapon(defaultWeapon);
         }
         private void Update()
         {
@@ -53,6 +56,13 @@ namespace RPG.Combat
             }
         }
 
+        public void EquipWeapon(Weapon_SO weapon)
+        {
+            currentWeapon = weapon;
+            if(weapon == null) return;
+            weapon.Spawn(handTransform,animator);
+        }
+
         private void TriggerAttackAnimation()
         {
             animator.ResetTrigger("stopAttack");
@@ -63,12 +73,12 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) return;
-            target.TakeDamage(weaponDamage);
+            target.TakeDamage(currentWeapon.GetWeaponDamage());
         }
 
         private bool GetIsOutOfRange()
         {
-            return Vector3.Distance(target.transform.position, transform.position) > weaponRange;
+            return Vector3.Distance(target.transform.position, transform.position) > currentWeapon.GetWeaponRange();
         }
 
         public void Attack(GameObject combatTarget)
