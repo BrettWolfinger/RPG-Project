@@ -7,14 +7,21 @@ using RPG.Core;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float projectileSpeed = 5f;
+    [SerializeField] bool isHoming = false;
+    [SerializeField] GameObject hitEffect = null;
     Health target = null;
     float damage = 0;
+
+    private void Start() 
+    {
+        transform.LookAt(GetAimLocation());
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (target == null) return;
-        transform.LookAt(GetAimLocation());
+        if(isHoming && !target.IsDead()) transform.LookAt(GetAimLocation());
         transform.Translate(Vector3.forward*Time.deltaTime*projectileSpeed);
     }
 
@@ -35,9 +42,14 @@ public class Projectile : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.GetComponent<Health>() == target)
+        Health otherHealth = other.GetComponent<Health>();
+        if(otherHealth == target && !otherHealth.IsDead())
         {
             target.TakeDamage(damage);
+            if(hitEffect != null)
+            {
+                Instantiate(hitEffect,GetAimLocation(),transform.rotation);
+            }
             Destroy(gameObject);
         }
     }
