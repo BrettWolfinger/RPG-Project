@@ -219,3 +219,17 @@ MonoBehaviour:
   waypointDwellTime: 2
   patrolSpeed: 3
   chaseSpeed: 4.5
+--- !u!114 &2743267380682219905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6820078113469015510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf88144d595fe74d8411c0ad016116f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  characterClass: {fileID: 11400000, guid: 747c95d64ed1f524c8847a37942edd2f, type: 2}

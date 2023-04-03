@@ -4,6 +4,7 @@ using RPG.Movement;
 using RPG.Core;
 using RPG.Saving;
 using Newtonsoft.Json.Linq;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {
@@ -84,11 +85,11 @@ namespace RPG.Combat
             if (target == null) return;
             if(currentWeapon.HasProjectile())
             {
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, gameObject, target);
             }
             else
             {
-                target.TakeDamage(currentWeapon.GetWeaponDamage());
+                target.TakeDamage(gameObject,currentWeapon.GetWeaponDamage());
             }
         }
 
@@ -115,6 +116,11 @@ namespace RPG.Combat
             mover.Cancel();
         }
 
+        public Health GetTarget()
+        {
+            return target;
+        }
+
         private void StopAttackAnimation()
         {
             animator.ResetTrigger("attack");
@@ -129,7 +135,7 @@ namespace RPG.Combat
         public void RestoreFromJToken(JToken state)
         {
             string weaponName = state.ToObject<string>();
-            Weapon_SO weapon = Resources.Load<Weapon_SO>(weaponName);
+            Weapon_SO weapon = UnityEngine.Resources.Load<Weapon_SO>(weaponName);
             EquipWeapon(weapon);
         }
     }

@@ -1,9 +1,12 @@
+using System;
 using Newtonsoft.Json.Linq;
+using RPG.Core;
 using RPG.Saving;
+using RPG.Stats;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace RPG.Core
+namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, IJsonSaveable
     {
@@ -11,7 +14,11 @@ namespace RPG.Core
 
         [SerializeField] float health = 100f;
 
-        public void TakeDamage(float damage)
+        private void Awake() {
+            health = GetComponent<BaseStats>().GetHealth();
+        }
+
+        public void TakeDamage(GameObject attacker, float damage)
         {
             //lower bound health to zero
             health = Mathf.Max(health - damage,0);
@@ -19,6 +26,7 @@ namespace RPG.Core
             if(health == 0)
             {
                 Die();
+                AwardExperience(attacker);
             }
         }
 
@@ -32,9 +40,22 @@ namespace RPG.Core
             isDead = true;
         }
 
+        private void AwardExperience(GameObject instigator)
+        {
+            Experience experience = instigator.GetComponent<Experience>();
+            if(experience == null) return;
+
+            experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
+        }
+
         public bool IsDead()
         {
             return isDead;
+        }
+
+        public float GetPercentage() 
+        {
+            return 100 * (health / GetComponent<BaseStats>().GetHealth());
         }
 
         public JToken CaptureAsJToken()

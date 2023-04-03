@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Core;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {
@@ -15,6 +15,7 @@ namespace RPG.Combat
         [SerializeField] GameObject[] destroyOnHit = null;
         [SerializeField] float lifeAfterImpact = 2;
         Health target = null;
+        GameObject attacker = null;
         float damage = 0;
 
         private void Start() 
@@ -30,10 +31,11 @@ namespace RPG.Combat
             transform.Translate(Vector3.forward*Time.deltaTime*projectileSpeed);
         }
 
-        public void SetTarget(Health target, float damage)
+        public void SetTarget(Health target, GameObject attacker, float damage)
         {
             this.target = target;
             this.damage = damage;
+            this.attacker = attacker;
 
             Destroy(gameObject, maxLifeTime);
         }
@@ -52,7 +54,7 @@ namespace RPG.Combat
             Health otherHealth = other.GetComponent<Health>();
             if(otherHealth == target && !otherHealth.IsDead())
             {
-                target.TakeDamage(damage);
+                target.TakeDamage(attacker, damage);
                 projectileSpeed = 0;
                 if(hitEffect != null)
                 {
