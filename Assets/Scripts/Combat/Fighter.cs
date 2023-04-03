@@ -2,9 +2,12 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using RPG.Movement;
 using RPG.Core;
+using RPG.Saving;
+using Newtonsoft.Json.Linq;
+
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, IJsonSaveable
     {
         //Cached component variables
         Mover mover;
@@ -28,7 +31,10 @@ namespace RPG.Combat
             mover = GetComponent<Mover>();
             scheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
-            EquipWeapon(defaultWeapon);
+            if (currentWeapon == null)
+            {
+                EquipWeapon(defaultWeapon);
+            }
         }
         private void Update()
         {
@@ -113,6 +119,18 @@ namespace RPG.Combat
         {
             animator.ResetTrigger("attack");
             animator.SetTrigger("stopAttack");
+        }
+
+        public JToken CaptureAsJToken()
+        {
+            return JToken.FromObject(currentWeapon.name);
+        }
+
+        public void RestoreFromJToken(JToken state)
+        {
+            string weaponName = state.ToObject<string>();
+            Weapon_SO weapon = Resources.Load<Weapon_SO>(weaponName);
+            EquipWeapon(weapon);
         }
     }
 }

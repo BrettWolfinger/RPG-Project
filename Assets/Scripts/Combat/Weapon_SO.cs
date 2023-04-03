@@ -33,6 +33,14 @@ namespace RPG.Combat
             {
                 animator.runtimeAnimatorController = animatorOverride;
             }
+            else 
+            {
+                var overrrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+                if(overrrideController != null)
+                {
+                    animator.runtimeAnimatorController = overrrideController.runtimeAnimatorController;
+                }
+            }
         }
 
         private void DestroyOldWeapon(Transform rightHand, Transform leftHand)
