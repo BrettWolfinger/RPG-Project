@@ -3,6 +3,8 @@ using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Attributes;
+using GameDevTV.Utils;
+using System;
 
 namespace RPG.Control{
     public class AIController : MonoBehaviour 
@@ -20,7 +22,12 @@ namespace RPG.Control{
         [SerializeField] float patrolSpeed = 3f;
         [SerializeField] float chaseSpeed = 4.5f;
         
-        Vector3 guardPosition;
+        LazyValue<Vector3> _guardPosition;
+        public Vector3 guardPosition
+        {
+            get {return _guardPosition.value;}
+            set {_guardPosition.value=value;}
+        }
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeSpentDwelling = 0;
         int waypointIndex = 0;
@@ -31,7 +38,17 @@ namespace RPG.Control{
             health = GetComponent<Health>();
             mover = GetComponent<Mover>();
             scheduler = GetComponent<ActionScheduler>();
-            guardPosition = transform.position;
+            _guardPosition = new LazyValue<Vector3>(GetGuardPosition);
+        }
+
+        private Vector3 GetGuardPosition()
+        {
+            return transform.position;
+        }
+
+        private void Start() 
+        {
+            _guardPosition.ForceInit();
         }
 
         private void Update()

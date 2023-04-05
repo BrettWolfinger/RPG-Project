@@ -35,6 +35,8 @@ namespace RPG.SceneManagement
             DontDestroyOnLoad(this.gameObject);
             yield return fader.FadeOut(fadeOutTime);
             
+            savingWrapper.Save();
+
             yield return SceneManager.LoadSceneAsync(portalData.SceneToLoad);
 
             Portal otherPortal = GetOtherPortal();

@@ -12,8 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da143f1ee58428a449d241c6e6e77ffd, type: 3}
   m_Name: GruntClass
   m_EditorClassIdentifier: 
-  health:
-  - 10
-  - 20
-  - 40
-  - 60
+  statData:
+  - stat: 0
+    levels:
+    - 25
+    - 50
+    - 75
+  - stat: 1
+    levels:
+    - 15
+    - 25
+    - 35
+  - stat: 3
+    levels:
+    - 10
+    - 20
+    - 30
+    - 40
+    - 50

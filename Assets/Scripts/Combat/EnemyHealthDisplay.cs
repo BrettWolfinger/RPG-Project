@@ -8,9 +8,11 @@ namespace RPG.Combat
     {
         Fighter fighter;
         Health target;
+        TextMeshProUGUI tmp;
         private void Awake()
         {
             fighter = GameObject.FindWithTag("Player").GetComponent<Fighter>();
+            tmp = GetComponent<TextMeshProUGUI>();
         }
 
         private void Update() 
@@ -18,11 +20,12 @@ namespace RPG.Combat
             target = fighter.GetTarget();
             if(target == null)
             {
-                GetComponent<TextMeshProUGUI>().text = "N/A";
+                tmp.text = "N/A";
             }
             else
             {
-                GetComponent<TextMeshProUGUI>().text = $"{target.GetPercentage():0}%";
+                //tmp.text = $"{target.GetPercentage():0}%";
+                tmp.text = $"{target.GetHealth():0}/{target.GetMaximumHealth():0}";
             }
         }
     }

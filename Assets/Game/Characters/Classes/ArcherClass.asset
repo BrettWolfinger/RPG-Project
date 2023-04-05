@@ -12,8 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da143f1ee58428a449d241c6e6e77ffd, type: 3}
   m_Name: ArcherClass
   m_EditorClassIdentifier: 
-  health:
-  - 10
-  - 20
-  - 35
-  - 55
+  statData:
+  - stat: 0
+    levels:
+    - 20
+    - 40
+    - 65
+  - stat: 1
+    levels:
+    - 20
+    - 40
+    - 60
+  - stat: 3
+    levels:
+    - 10
+    - 20
+    - 30
+    - 40
+    - 50

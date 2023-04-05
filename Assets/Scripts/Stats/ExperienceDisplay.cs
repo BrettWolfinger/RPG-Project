@@ -1,19 +1,24 @@
 using TMPro;
 using UnityEngine;
 
-namespace RPG.Attributes
+namespace RPG.Stats
 {
     public class ExperienceDisplay : MonoBehaviour 
     {
         Experience xp;
+        BaseStats baseStats;
+        TextMeshProUGUI tmp;
+
         private void Awake()
         {
             xp = GameObject.FindWithTag("Player").GetComponent<Experience>();
+            baseStats = GameObject.FindWithTag("Player").GetComponent<BaseStats>();
+            tmp = GetComponent<TextMeshProUGUI>();
         }
 
         private void Update() 
         {
-            GetComponent<TextMeshProUGUI>().text = $"{xp.GetExperience():0}";
+            tmp.text = $"{xp.GetExperienceTotal():0}";
         }
     }
 }

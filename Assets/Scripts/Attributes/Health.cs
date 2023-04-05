@@ -1,4 +1,5 @@
 using System;
+using GameDevTV.Utils;
 using Newtonsoft.Json.Linq;
 using RPG.Core;
 using RPG.Saving;
@@ -11,18 +12,32 @@ namespace RPG.Attributes
     public class Health : MonoBehaviour, IJsonSaveable
     {
         bool isDead = false;
-
-        [SerializeField] float health = 100f;
-
+        LazyValue<float> _health;
+        public float health
+        {
+            get {return _health.value;}
+            set {_health.value=value;}
+        }
+        BaseStats stats;
         private void Awake() {
-            health = GetComponent<BaseStats>().GetHealth();
+            stats = GetComponent<BaseStats>();
+            _health = new LazyValue<float>(GetIntitialHealth);
+        }
+
+        private float GetIntitialHealth()
+        {
+            return stats.GetCharacterStat(CharacterStat.Health);
+        }
+
+        private void Start() 
+        {
+            _health.ForceInit();
         }
 
         public void TakeDamage(GameObject attacker, float damage)
         {
             //lower bound health to zero
             health = Mathf.Max(health - damage,0);
-            print(health);
             if(health == 0)
             {
                 Die();
@@ -45,7 +60,26 @@ namespace RPG.Attributes
             Experience experience = instigator.GetComponent<Experience>();
             if(experience == null) return;
 
-            experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
+            experience.GainExperience(stats.GetCharacterStat(CharacterStat.ExperienceReward));
+        }
+
+        private void OnEnable() {
+            if(stats != null)
+            {
+                stats.onLevelUp += OnLevelUp;
+            }
+        }
+
+        private void OnLevelUp()
+        {
+            health = stats.GetCharacterStat(CharacterStat.Health);
+        }
+
+        private void OnDisable() {
+            if(stats != null)
+            {
+                stats.onLevelUp -= OnLevelUp;
+            }
         }
 
         public bool IsDead()
@@ -53,9 +87,18 @@ namespace RPG.Attributes
             return isDead;
         }
 
+        public float GetHealth()
+        {
+            return health;
+        }
+        public float GetMaximumHealth()
+        {
+            return stats.GetCharacterStat(CharacterStat.Health);
+        }
+
         public float GetPercentage() 
         {
-            return 100 * (health / GetComponent<BaseStats>().GetHealth());
+            return 100 * (health / stats.GetCharacterStat(CharacterStat.Health));
         }
 
         public JToken CaptureAsJToken()

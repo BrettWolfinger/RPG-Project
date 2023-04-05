@@ -147,18 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingLevel: 1
   characterClass: {fileID: 11400000, guid: 5c1a2846d3ad09548ad8417cd766aaa1, type: 2}
---- !u!114 &9017804863124007787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822536518065666022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd762d6a291844c4f81b27a0edff8a83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  levelUpParticleEffect: {fileID: 5611249681237483667, guid: 6d994ff181a315a40a11292add07f070, type: 3}
+  shouldUseModifiers: 1
 --- !u!114 &8192456869650173755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +159,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cf11d30d15896f458ef38bcd5107246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9017804863124007787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822536518065666022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd762d6a291844c4f81b27a0edff8a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5778834978009760506

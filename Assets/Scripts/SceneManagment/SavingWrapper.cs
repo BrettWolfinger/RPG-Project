@@ -16,13 +16,14 @@ namespace RPG.SceneManagement
         
         private void Awake() {
             savingSystem = GetComponent<JsonSavingSystem>();
+            StartCoroutine(LoadLastScene());
         }
 
-        private IEnumerator Start() {
+        private IEnumerator LoadLastScene() {
+            yield return savingSystem.LoadLastScene(defaultSaveFile);
             Fader fader = FindObjectOfType<Fader>();
 
             fader.FadeOutImmediate();
-            yield return savingSystem.LoadLastScene(defaultSaveFile);
             yield return fader.FadeIn(fadeInTime);
         }
 
@@ -31,9 +32,13 @@ namespace RPG.SceneManagement
             {
                 Save();
             }
-            if (Input.GetKey(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 Load();
+            }
+            if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                Delete();
             }
         }
 
@@ -45,6 +50,11 @@ namespace RPG.SceneManagement
         public void Load()
         {
             savingSystem.Load(defaultSaveFile);
+        }
+
+        public void Delete()
+        {
+            savingSystem.Delete(defaultSaveFile);
         }
     }
 }
