@@ -6,11 +6,13 @@ using RPG.Saving;
 using RPG.Stats;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, IJsonSaveable
     {
+        [SerializeField] UnityEvent<float> takeDamage;
         bool isDead = false;
         LazyValue<float> _health;
         public float health
@@ -19,6 +21,7 @@ namespace RPG.Attributes
             set {_health.value=value;}
         }
         BaseStats stats;
+
         private void Awake() {
             stats = GetComponent<BaseStats>();
             _health = new LazyValue<float>(GetIntitialHealth);
@@ -38,6 +41,9 @@ namespace RPG.Attributes
         {
             //lower bound health to zero
             health = Mathf.Max(health - damage,0);
+
+            takeDamage.Invoke(damage);
+
             if(health == 0)
             {
                 Die();
@@ -98,7 +104,12 @@ namespace RPG.Attributes
 
         public float GetPercentage() 
         {
-            return 100 * (health / stats.GetCharacterStat(CharacterStat.Health));
+            return 100 * GetFraction();
+        }
+
+        public float GetFraction()
+        {
+            return health / stats.GetCharacterStat(CharacterStat.Health);
         }
 
         public JToken CaptureAsJToken()
