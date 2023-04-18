@@ -133,6 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de107203141e597458d7802cfe0c19b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursors:
+    NoneCursor: {fileID: 11400000, guid: f160c71015bdf974b884272bd17e0a4a, type: 2}
+    UICursor: {fileID: 11400000, guid: f4a992759c4b84d47bf0506c4d201d18, type: 2}
+    MovementCursor: {fileID: 11400000, guid: 85ad22ffc7bbeb94da9f06eba8f8c230, type: 2}
+    CombatCursor: {fileID: 11400000, guid: 7642f9b03d3620741b1db447236e82b1, type: 2}
+    PickupCursor: {fileID: 11400000, guid: 445f631f9da3d8e4e9293fb72e01331d, type: 2}
 --- !u!114 &7732238645404229947
 MonoBehaviour:
   m_ObjectHideFlags: 0
