@@ -16,11 +16,13 @@ namespace RPG.Control{
         ActionScheduler scheduler;
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 2f;
+        [SerializeField] float aggroCooldownTime = 5f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float waypointDwellTime = 2f;
         [SerializeField] float patrolSpeed = 3f;
         [SerializeField] float chaseSpeed = 4.5f;
+        [SerializeField] float shoutDistance = 5f;
         
         LazyValue<Vector3> _guardPosition;
         public Vector3 guardPosition
@@ -29,7 +31,9 @@ namespace RPG.Control{
             set {_guardPosition.value=value;}
         }
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        float timeSinceAggro = Mathf.Infinity;
         float timeSpentDwelling = 0;
+        bool hasBeenAggroedRecently = false;
         int waypointIndex = 0;
 
         private void Awake() {
@@ -54,7 +58,7 @@ namespace RPG.Control{
         private void Update()
         {
             if(health.IsDead()) return;
-            if(GetIsInChaseRange())
+            if(IsAggravated() && fighter.CanAttack(player))
             {
                 AttackBehavior();
             }
@@ -67,7 +71,36 @@ namespace RPG.Control{
                 PatrolBehavior();
             }
 
+            UpdateTimers();
+
+            if (timeSinceAggro >= aggroCooldownTime && 
+            timeSinceLastSawPlayer >= suspicionTime)
+            {
+                hasBeenAggroedRecently = false;
+            }
+        }
+
+        public void UpdateTimers()
+        {
             timeSinceLastSawPlayer += Time.deltaTime;
+            timeSinceAggro += Time.deltaTime;
+        }
+
+        public void Aggravate()
+        {
+            timeSinceAggro = 0;
+        }
+
+        public void AggroAllies()
+        {
+            if (hasBeenAggroedRecently == true) {return;}
+ 
+            if (hasBeenAggroedRecently == false)
+            {
+                timeSinceAggro = 0f;
+                timeSinceLastSawPlayer = 0f;
+                hasBeenAggroedRecently = true;
+            }
         }
 
         private void AttackBehavior()
@@ -75,6 +108,21 @@ namespace RPG.Control{
             timeSinceLastSawPlayer = 0;
             mover.SetSpeed(chaseSpeed);
             fighter.Attack(player);
+
+            AggroNearbyEnemies();
+        }
+
+        private void AggroNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+            foreach (RaycastHit hit in hits)
+            {
+                AIController ai = hit.collider.GetComponent<AIController>();
+                
+                if(ai == null || ai == this) continue;
+                
+                ai.AggroAllies();
+            }
         }
 
         private void SuspicionBehavior()
@@ -119,10 +167,10 @@ namespace RPG.Control{
             return patrolPath.GetWaypoint(waypointIndex);
         }
 
-        private bool GetIsInChaseRange()
+        private bool IsAggravated()
         {
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-            return distanceToPlayer < chaseDistance;
+            return distanceToPlayer < chaseDistance || timeSinceAggro < aggroCooldownTime;
         }
 
         //called by unity

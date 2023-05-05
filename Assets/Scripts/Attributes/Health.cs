@@ -13,6 +13,7 @@ namespace RPG.Attributes
     public class Health : MonoBehaviour, IJsonSaveable
     {
         [SerializeField] UnityEvent<float> takeDamage;
+        [SerializeField] UnityEvent onDie;
         bool isDead = false;
         LazyValue<float> _health;
         public float health
@@ -46,6 +47,7 @@ namespace RPG.Attributes
 
             if(health == 0)
             {
+                onDie.Invoke();
                 Die();
                 AwardExperience(attacker);
             }

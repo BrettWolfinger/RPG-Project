@@ -10,6 +10,11 @@ namespace RPG.Combat
     {
         public bool HandleRaycast(PlayerController callingController)
         {
+            if (!callingController.GetComponent<Fighter>().CanAttack(gameObject))
+            {
+                return false;
+            }
+            
             if (Input.GetMouseButtonDown(0))
             {
                 callingController.GetComponent<Fighter>().Attack(gameObject);
@@ -19,6 +24,7 @@ namespace RPG.Combat
 
         public CursorType_SO GetCursorType(PlayerController callingController)
         {
+            
             return callingController.cursors.CombatCursor;
         }
     }
