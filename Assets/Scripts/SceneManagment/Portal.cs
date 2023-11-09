@@ -48,6 +48,7 @@ namespace RPG.SceneManagement
             savingWrapper.Load();
             UpdatePlayer(otherPortal);
 
+            yield return new WaitForEndOfFrame();
             savingWrapper.Save();
             
             yield return new WaitForSeconds(fadeWaitTime);

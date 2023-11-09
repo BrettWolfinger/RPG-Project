@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a423a82e0dc0fcf4090c348eeca79f3f, type: 3}
   m_Name: Bow_Enemy
   m_EditorClassIdentifier: 
+  itemID: d3b028c6-8037-44f1-9778-09666da62dfb
+  displayName: 
+  description: 
+  icon: {fileID: 0}
+  pickup: {fileID: 5015331231869363966, guid: aabe9e5c3c9498d49825d6c2ce8a9f70, type: 3}
+  stackable: 0
+  allowedEquipLocation: 5
   equippedPrefab: {fileID: 2804866360200895721, guid: d6500bc391636ed4ca0b8b1c0b7c7a2b, type: 3}
   animatorOverride: {fileID: 22100000, guid: 414a97345ec53204aa6c43907e1ac4b4, type: 2}
   weaponDamage: 10

@@ -24,6 +24,9 @@ namespace RPG.Control
             public CursorType_SO CombatCursor;
             public CursorType_SO PickupCursor;
         }
+
+        bool isDraggingUI = false;
+
         [SerializeField] public Cursors cursors;
         [SerializeField] float maxNavMeshProjectionDistance = 1f;
         [SerializeField] float raycastRadius = 1f;
@@ -83,9 +86,21 @@ namespace RPG.Control
 
         private bool InteractWithUI()
         {
+            if(Input.GetMouseButtonUp(0))
+            {
+                isDraggingUI = false;
+            }
             if(EventSystem.current.IsPointerOverGameObject())
             {
+                if(Input.GetMouseButtonDown(0))
+                {
+                    isDraggingUI = true;
+                }
                 cursors.UICursor.SetCursor();
+                return true;
+            }
+            if(isDraggingUI)
+            {
                 return true;
             }
             return false;

@@ -9,10 +9,11 @@ using GameDevTV.Utils;
 using System;
 using RPG.Stats;
 using System.Collections.Generic;
+using GameDevTV.Inventories;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, IJsonSaveable, IModifierProvider
+    public class Fighter : MonoBehaviour, IAction, IJsonSaveable
     {
         //Cached component variables
         Mover mover;
@@ -30,6 +31,7 @@ namespace RPG.Combat
 
 
         //Other helper variables
+        Equipment equipment;
         float timeSinceLastAttack = Mathf.Infinity;
         Weapon_SO currentWeapon_SO;
         LazyValue<Weapon> _currentWeapon;
@@ -46,7 +48,13 @@ namespace RPG.Combat
             stats = GetComponent<BaseStats>();
             currentWeapon_SO = defaultWeapon;
             _currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
+            equipment = GetComponent<Equipment>();
+            if (equipment)
+            {
+                equipment.equipmentUpdated += UpdateWeapon;
+            }
         }
+
         private void Start() {
             AttachWeapon(currentWeapon_SO);
             _currentWeapon.ForceInit();
@@ -91,6 +99,20 @@ namespace RPG.Combat
         {
             currentWeapon_SO = weapon;
             currentWeapon = AttachWeapon(weapon);
+        }
+
+        private void UpdateWeapon()
+        {
+            var weapon = equipment.GetItemInSlot(EquipLocation.Weapon) as Weapon_SO;
+
+            if(weapon == null)
+            {
+                EquipWeapon(defaultWeapon);
+            }
+            else
+            {
+                EquipWeapon(weapon);   
+            }
         }
 
         private Weapon AttachWeapon(Weapon_SO weapon)
@@ -187,22 +209,6 @@ namespace RPG.Combat
             string weaponName = state.ToObject<string>();
             Weapon_SO weapon = UnityEngine.Resources.Load<Weapon_SO>(weaponName);
             EquipWeapon(weapon);
-        }
-
-        public IEnumerable<float> GetAdditiveModifiers(CharacterStat stat)
-        {
-            if(stat == CharacterStat.BaseDamage)
-            {
-                yield return currentWeapon_SO.GetWeaponDamage();
-            }
-        }
-
-        public IEnumerable<float> GetPercentageModifiers(CharacterStat stat)
-        {
-            if(stat == CharacterStat.BaseDamage)
-            {
-                yield return currentWeapon_SO.GetWeaponPercentage();
-            }
         }
     }
 }
