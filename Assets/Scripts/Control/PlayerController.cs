@@ -23,6 +23,7 @@ namespace RPG.Control
             public CursorType_SO MovementCursor;
             public CursorType_SO CombatCursor;
             public CursorType_SO PickupCursor;
+            public CursorType_SO DialogueCursor;
         }
 
         bool isDraggingUI = false;

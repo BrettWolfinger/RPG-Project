@@ -129,6 +129,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1277797657608340628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822536518065666022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d7d7df3ba655248bfd02c0c6cc473f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scatterDistance: 1
+  dropTable: {fileID: 0}
 --- !u!114 &3582238640623270051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +161,7 @@ MonoBehaviour:
     MovementCursor: {fileID: 11400000, guid: 85ad22ffc7bbeb94da9f06eba8f8c230, type: 2}
     CombatCursor: {fileID: 11400000, guid: 7642f9b03d3620741b1db447236e82b1, type: 2}
     PickupCursor: {fileID: 11400000, guid: 445f631f9da3d8e4e9293fb72e01331d, type: 2}
+    DialogueCursor: {fileID: 11400000, guid: 22f8b88a0aa55b44e8ba789a4ad33f9a, type: 2}
   maxNavMeshProjectionDistance: 1
   raycastRadius: 1
 --- !u!114 &4422104219253413246
@@ -202,6 +217,19 @@ MonoBehaviour:
   characterClass: {fileID: 11400000, guid: 5c1a2846d3ad09548ad8417cd766aaa1, type: 2}
   levelUpParticleEffect: {fileID: 5611249681237483667, guid: 6d994ff181a315a40a11292add07f070, type: 3}
   shouldUseModifiers: 1
+--- !u!114 &7868731227658434325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822536518065666022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7abc12ea0390c794d8e448900ee5863b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testDialogue: {fileID: 11400000, guid: 2db847856e3aa884cb9083b9ef6d93e0, type: 2}
 --- !u!114 &8192456869650173755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,19 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd762d6a291844c4f81b27a0edff8a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1277797657608340628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822536518065666022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d7d7df3ba655248bfd02c0c6cc473f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scatterDistance: 1
 --- !u!1001 &5778834978009760506
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,0 +1,291 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8886158300666724658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: e5208fd4-1751-4c50-8082-4421272f4adc
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  dialogueText: You don't look like you're from around here.
+  childrenNodes:
+  - b6b08657-9639-405f-8703-6a29bbbc8295
+  - b5fce4f1-c5c9-4aae-af50-8bdcae0df7ad
+  rect:
+    serializedVersion: 2
+    x: 110
+    y: 96
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &-6360966114213084331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: b6b08657-9639-405f-8703-6a29bbbc8295
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  dialogueText: I came from Newton
+  childrenNodes:
+  - 50fcb34e-20a8-419f-a8d1-9eb87519a1de
+  rect:
+    serializedVersion: 2
+    x: 407
+    y: 279
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &-5995471744873237707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: b5fce4f1-c5c9-4aae-af50-8bdcae0df7ad
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  dialogueText: I''ve lived here all my life!
+  childrenNodes:
+  - 29c6a523-dfe5-4f30-ade7-84680620e4b4
+  rect:
+    serializedVersion: 2
+    x: 404
+    y: 46
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &-4765163385799945813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 97c0d7db-46fc-4467-97e4-c5778e13cba6
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  dialogueText: Oh yeah, I know him.
+  childrenNodes:
+  - 3462008a-667b-4af4-a8f9-d5a8425cb115
+  rect:
+    serializedVersion: 2
+    x: 936
+    y: 7
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &-3939788025462522151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: bcf71d81-6415-450e-abce-e883922c5659
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  dialogueText: Who?
+  childrenNodes:
+  - 61b19f3b-58f7-4b25-9740-f9516f4bbcab
+  rect:
+    serializedVersion: 2
+    x: 932
+    y: 121
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &-1566720303746238639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 3462008a-667b-4af4-a8f9-d5a8425cb115
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  dialogueText: I made him up! Die!
+  childrenNodes: []
+  rect:
+    serializedVersion: 2
+    x: 1186
+    y: 7
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 04000000
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3716458d89c21c489fa2a63717570b6, type: 3}
+  m_Name: New in Town
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -8886158300666724658}
+  - {fileID: -6360966114213084331}
+  - {fileID: 8575754003356144191}
+  - {fileID: 7348543306592964187}
+  - {fileID: 4637865501150793580}
+  - {fileID: -5995471744873237707}
+  - {fileID: 8189107720436613983}
+  - {fileID: 3530949161253489379}
+  - {fileID: -3939788025462522151}
+  - {fileID: -4765163385799945813}
+  - {fileID: -1566720303746238639}
+--- !u!114 &3530949161253489379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 61b19f3b-58f7-4b25-9740-f9516f4bbcab
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  dialogueText: Don't worry about it. Say, do you have something to eat? I'm starving.
+  childrenNodes: []
+  rect:
+    serializedVersion: 2
+    x: 1406
+    y: 97
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &4637865501150793580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 29c6a523-dfe5-4f30-ade7-84680620e4b4
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  dialogueText: Oh really? Then you must know Mr. Bowler.
+  childrenNodes:
+  - bcf71d81-6415-450e-abce-e883922c5659
+  - 97c0d7db-46fc-4467-97e4-c5778e13cba6
+  rect:
+    serializedVersion: 2
+    x: 685
+    y: 45
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &7348543306592964187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 15949c89-3611-41ec-9498-94e67cd5792b
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  dialogueText: Did I say Newton? I'm actually from Spingvile.
+  childrenNodes:
+  - 32d995ba-5ba9-403d-8d9a-2367b0aa6bae
+  rect:
+    serializedVersion: 2
+    x: 926
+    y: 410
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &8189107720436613983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 32d995ba-5ba9-403d-8d9a-2367b0aa6bae
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  dialogueText: I haven't heard about any trouble.
+  childrenNodes:
+  - 61b19f3b-58f7-4b25-9740-f9516f4bbcab
+  rect:
+    serializedVersion: 2
+    x: 1148
+    y: 160
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &8575754003356144191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 50fcb34e-20a8-419f-a8d1-9eb87519a1de
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  dialogueText: Newton, eh? I heard there's trouble brewing down there.
+  childrenNodes:
+  - 15949c89-3611-41ec-9498-94e67cd5792b
+  - 32d995ba-5ba9-403d-8d9a-2367b0aa6bae
+  rect:
+    serializedVersion: 2
+    x: 653
+    y: 266
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 

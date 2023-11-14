@@ -17,6 +17,17 @@ namespace RPG.Dialogue
         [SerializeField]
         private Rect rect = new Rect(0,0,200,100);
 
+        public enum DialogueAction
+        {
+            None,
+            TestRootEntry,
+            TestSelection,
+            TestAIExit,
+            Attacking
+        }
+        [SerializeField] private DialogueAction[] onEnterAction;
+        [SerializeField] private DialogueAction[] onExitAction;
+
         public string GetDialogueText()
         {
             return dialogueText;
@@ -34,6 +45,16 @@ namespace RPG.Dialogue
         public bool IsPlayerSpeaking()
         {
             return isPlayerSpeaking;
+        }
+
+        public DialogueAction[] GetOnEnterAction()
+        {
+            return onEnterAction;
+        }
+
+        public DialogueAction[] GetOnExitAction()
+        {
+            return onExitAction;
         }
 
 #if UNITY_EDITOR
