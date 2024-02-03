@@ -23,7 +23,9 @@ namespace RPG.Dialogue
             TestRootEntry,
             TestSelection,
             TestAIExit,
-            Attacking
+            Attacking,
+            GiveQuest,
+            CompleteObjective
         }
         [SerializeField] private DialogueAction[] onEnterAction;
         [SerializeField] private DialogueAction[] onExitAction;

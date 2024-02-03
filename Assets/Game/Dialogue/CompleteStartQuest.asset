@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3716458d89c21c489fa2a63717570b6, type: 3}
-  m_Name: NewDialogue 1
+  m_Name: CompleteStartQuest
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 6535799737041859324}
---- !u!114 &6535799737041859324
+  - {fileID: 4665626938157930759}
+--- !u!114 &4665626938157930759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,9 +24,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
-  m_Name: 0c77299a-fb09-405f-8372-346d37038290
+  m_Name: 971c7092-48f0-4548-a880-1f0119c62de5
   m_EditorClassIdentifier: 
-  dialogueText: 
+  isPlayerSpeaking: 0
+  dialogueText: You've done it!
   childrenNodes: []
   rect:
     serializedVersion: 2
@@ -34,3 +35,5 @@ MonoBehaviour:
     y: 0
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: 06000000

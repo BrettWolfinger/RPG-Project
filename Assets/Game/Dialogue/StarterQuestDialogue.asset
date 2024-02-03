@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4586600445431323301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 84105391-a290-4566-a7be-434b0af5a811
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  dialogueText: Thank you so much!
+  childrenNodes: []
+  rect:
+    serializedVersion: 2
+    x: 500
+    y: 148
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 05000000
+--- !u!114 &-135290138628464905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 252c72b0-e629-47bd-aaa5-18a6dd07f3ff
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  dialogueText: Okay!
+  childrenNodes:
+  - 84105391-a290-4566-a7be-434b0af5a811
+  rect:
+    serializedVersion: 2
+    x: 250
+    y: 149
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3716458d89c21c489fa2a63717570b6, type: 3}
+  m_Name: StarterQuestDialogue
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 6535799737041859324}
+  - {fileID: 4916728033871910635}
+  - {fileID: -135290138628464905}
+  - {fileID: -4586600445431323301}
+--- !u!114 &4916728033871910635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: ab64d7bd-8d95-4d3b-94ff-f3765717a074
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  dialogueText: No.
+  childrenNodes: []
+  rect:
+    serializedVersion: 2
+    x: 250
+    y: 0
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &6535799737041859324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a759c46ff7023041b0a696703901013, type: 3}
+  m_Name: 0c77299a-fb09-405f-8372-346d37038290
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  dialogueText: Please, you have to free the town!
+  childrenNodes:
+  - ab64d7bd-8d95-4d3b-94ff-f3765717a074
+  - 252c72b0-e629-47bd-aaa5-18a6dd07f3ff
+  rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
