@@ -6,6 +6,7 @@ using System;
 using RPG.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.AI;
+using GameDevTV.Inventories;
 
 namespace RPG.Control
 {
@@ -14,6 +15,7 @@ namespace RPG.Control
         Mover mover;
         Fighter fighter;
         Health health;
+        ActionStore actionStore;
 
         [System.Serializable]
         public struct Cursors
@@ -31,6 +33,7 @@ namespace RPG.Control
         [SerializeField] public Cursors cursors;
         [SerializeField] float maxNavMeshProjectionDistance = 1f;
         [SerializeField] float raycastRadius = 1f;
+        [SerializeField] int numOfAbilities = 6;
 
 
         void Awake()
@@ -38,6 +41,7 @@ namespace RPG.Control
             mover = GetComponent<Mover>();
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
+            actionStore = GetComponent<ActionStore>();
         }
         void Update()
         {
@@ -47,6 +51,8 @@ namespace RPG.Control
                 cursors.NoneCursor.SetCursor();
                 return;
             }
+
+            UseAbilities();
 
             if(InteractWithComponent()) return;
             if(InteractWithMovement()) return;
@@ -70,6 +76,17 @@ namespace RPG.Control
                 }
             }
             return false;
+        }
+
+        private void UseAbilities()
+        {
+            for (int i = 0; i < numOfAbilities; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                {
+                    actionStore.Use(i, gameObject);
+                }
+            }
         }
 
         RaycastHit[] RaycastAllSorted()
@@ -145,7 +162,7 @@ namespace RPG.Control
             return false;
         }
 
-        private static Ray GetMouseRay()
+        public static Ray GetMouseRay()
         {
             return Camera.main.ScreenPointToRay(Input.mousePosition);
         }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8595658281462055862}
   - component: {fileID: 8345554545397011513}
   - component: {fileID: 5527508470671335672}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sanbox2Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}

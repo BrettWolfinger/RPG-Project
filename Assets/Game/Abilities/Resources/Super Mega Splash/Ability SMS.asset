@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dabed5e9a73e541b34159507090122, type: 3}
+  m_Name: Ability SMS
+  m_EditorClassIdentifier: 
+  itemID: a34095d9-a2c3-4400-b010-f2f28852e1c5
+  displayName: Super Mega Splash
+  description: Big Damage!
+  icon: {fileID: 21300000, guid: a1ec2c0ddc0da634b85f0f465fec2d0d, type: 3}
+  pickup: {fileID: 1775501645482464584, guid: 3ca16c4cbe3c2584daf5d1f2c7bec5ba, type: 3}
+  stackable: 0
+  consumable: 0
+  targetingStrategy: {fileID: 11400000, guid: 31e0496aa49c3014ab21e0806bede185, type: 2}
+  filterStrategies:
+  - {fileID: 11400000, guid: 5901d5f3fb630cb4da855dbf5e000cce, type: 2}

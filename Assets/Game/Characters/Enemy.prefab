@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2857527581443395721, guid: cbb9f6ff9620a3746b226c88b7128ff2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3218078153206756916, guid: cbb9f6ff9620a3746b226c88b7128ff2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -357,7 +361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scatterDistance: 1
   dropTable: {fileID: 11400000, guid: 158240d704a6ca44ba78639cdc8eeed4, type: 2}
-  numberOfDrops: 2
 --- !u!114 &2743267380682219905
 MonoBehaviour:
   m_ObjectHideFlags: 0
