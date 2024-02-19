@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Abilities.Filter
+namespace RPG.Abilities.Filters
 {
     [CreateAssetMenu(fileName = "Tag Filter", menuName = "RPG/Ability/Filters/Tag", order = 0)]
 

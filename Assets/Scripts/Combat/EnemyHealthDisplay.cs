@@ -25,7 +25,7 @@ namespace RPG.Combat
             else
             {
                 //tmp.text = $"{target.GetPercentage():0}%";
-                tmp.text = $"{target.GetHealth():0}/{target.GetMaximumHealth():0}";
+                tmp.text = $"{target.health:0}/{target.GetMaximumHealth():0}";
             }
         }
     }

@@ -94,11 +94,6 @@ namespace RPG.Attributes
         {
             return isDead;
         }
-
-        public float GetHealth()
-        {
-            return health;
-        }
         public float GetMaximumHealth()
         {
             return stats.GetCharacterStat(CharacterStat.Health);

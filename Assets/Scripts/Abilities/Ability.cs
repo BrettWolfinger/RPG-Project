@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using GameDevTV.Inventories;
+using RPG.Attributes;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPG.Abilities
@@ -11,22 +13,49 @@ namespace RPG.Abilities
     {
         [SerializeField] TargetingStrategy targetingStrategy;
         [SerializeField] FilterStrategy[] filterStrategies;
+        [SerializeField] EffectStrategy[] effectStrategies;
+        [SerializeField] float cooldownTime = 0;
+        [SerializeField] float manaCost = 0;
 
         public override void Use(GameObject user)
         {
-            targetingStrategy.StartTargeting(user, TargetAcquired);
-        }
+            //ability is still on cooldown
+            if(user.GetComponent<CooldownStore>().GetTimeRemaining(this) > 0)
+            {
+                return;
+            }
+            //user does not have enough mana to use ability
+            if(user.GetComponent<Mana>().mana <= manaCost)
+            {
+                return;
+            }
+            AbilityData data = new AbilityData(user);
+            targetingStrategy.StartTargeting(data,
+                () => {
+                    TargetAcquired(data);
+                });
+    }
 
-        private void TargetAcquired(IEnumerable<GameObject> targets)
+        private void TargetAcquired(AbilityData data)
         {
+            //target has been  selected, use mana and start cooldown
+            if(data.user.GetComponent<Mana>().UseMana(manaCost)) return;
+            data.user.GetComponent<CooldownStore>().StartCooldown(this, cooldownTime);
+
+
             foreach (FilterStrategy filterStrategy in filterStrategies)
             {
-                targets = filterStrategy.Filter(targets);
+                data.targets = filterStrategy.Filter(data.targets);
             }
-            foreach(var target in targets)
+            foreach(EffectStrategy effect in effectStrategies)
             {
-                Debug.Log(target);
+                effect.StartEffect(data, EffectFinished);
             }
+        }
+
+        private void EffectFinished()
+        {
+              
         }
     }
 }
