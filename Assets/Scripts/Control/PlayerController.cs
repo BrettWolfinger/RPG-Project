@@ -15,6 +15,7 @@ namespace RPG.Control
         Mover mover;
         Fighter fighter;
         Health health;
+        Stamina stamina;
         ActionStore actionStore;
 
         [System.Serializable]
@@ -34,6 +35,7 @@ namespace RPG.Control
         [SerializeField] float maxNavMeshProjectionDistance = 1f;
         [SerializeField] float raycastRadius = 1f;
         [SerializeField] int numOfAbilities = 6;
+        [SerializeField] float sprintSpeed = 4.5f;
 
 
         void Awake()
@@ -42,6 +44,7 @@ namespace RPG.Control
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
             actionStore = GetComponent<ActionStore>();
+            stamina = GetComponent<Stamina>();
         }
         void Update()
         {
@@ -137,6 +140,20 @@ namespace RPG.Control
                 if (Input.GetMouseButton(0))
                 {
                     mover.StartMoveAction(target);
+                }
+                //Sprint key
+                if(Input.GetKey(KeyCode.LeftShift))
+                {
+                    //Key that there is enough stamina
+                    if(stamina.stamina > 0)
+                    {
+                        mover.SetSpeed(sprintSpeed);
+                        stamina.RemoveStamina(.25f);
+                    }
+                }
+                else
+                {
+                    mover.SetSpeed(6f);
                 }
                 cursors.MovementCursor.SetCursor();
                 return true;
